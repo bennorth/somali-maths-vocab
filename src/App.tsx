@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { VocabTable } from "./VocabTable";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <VocabTable />
     </>
   );
 }
