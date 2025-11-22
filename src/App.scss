@@ -1,0 +1,126 @@
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+._VocabTable {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  margin: auto;
+  width: 360px;
+}
+
+._QueryControl {
+  margin-top: 1rem;
+
+  .search-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    .search-icon {
+      margin-right: 0.5rem;
+      transform: translateY(2px) rotate(-45deg);
+      display: grid;
+      grid-template-columns: auto auto;
+
+      > span {
+        display: grid;
+        place-content: center;
+      }
+
+      span:nth-child(1) {
+        span {
+          width: 1rem;
+          height: 3px;
+          border-top-left-radius: 1.5px;
+          border-bottom-left-radius: 1.5px;
+          background-color: black;
+        }
+      }
+      span:nth-child(2) {
+        span {
+          width: 1.4rem;
+          height: 1.4rem;
+          border: 3px solid black;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .clear-button {
+      margin-left: 0.5rem;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+}
+
+._VocabTableContent {
+  height: 100%;
+  overflow-y: auto;
+}
+
+._DirectionToggle {
+  margin: -0.5rem 1rem 0.25rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr;
+  align-items: center;
+
+  > * {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .toggle-direction {
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .value-lang {
+    text-align: right;
+  }
+}
+
+._PhraseBookRecordDisplay {
+  &:first-child {
+    margin-top: 0px;
+  }
+
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: papayawhip;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .key-phrases {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 4px;
+
+    .primary-key {
+      font-weight: bold;
+    }
+  }
+  .value-phrases {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-left: 4px;
+  }
+}
+
+._SinglePhrase.italic {
+  font-style: italic;
+}
