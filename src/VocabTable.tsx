@@ -40,9 +40,8 @@ const PhraseBookRecordDisplay: React.FC<PhraseBookRecordDisplayProps> = ({
         </span>
         <div className="alt-key-phrases">
           {record.altKeyPhrases.map((phrase, idx) => (
-            <span>
-              (
-              <SinglePhrase key={idx} phrase={phrase} />)
+            <span key={idx}>
+              (<SinglePhrase phrase={phrase} />)
             </span>
           ))}
         </div>
