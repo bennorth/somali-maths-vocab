@@ -1,5 +1,9 @@
 # Somali / English maths vocabulary
 
+[See app here](https://bennorth.github.io/somali-maths-vocab/).
+
+## Data
+
 Data extracted and refined from:
 
 - Study Companion, Word List / Eraybixinta, Mathematics / Xisaab, English–Somali / Soomaali–Ingiriis, HAAN Associates 1992.
