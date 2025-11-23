@@ -1,59 +1,16 @@
 import { Suspense, use, useState, type ChangeEventHandler } from "react";
 import { Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-type SomaliPhrase = {
-  lang: "somali";
-  phrase: string;
-  italic: boolean;
-};
-
-type EnglishPhrase = {
-  lang: "english";
-  phrase: string;
-};
-
-type EitherPhrase = SomaliPhrase | EnglishPhrase;
-
-type Language = EitherPhrase["lang"];
-function otherLanguage(lang: Language): Language {
-  switch (lang) {
-    case "somali":
-      return "english";
-    case "english":
-      return "somali";
-  }
-}
-
-function displayLanguage(lang: Language): string {
-  switch (lang) {
-    case "somali":
-      return "Somali";
-    case "english":
-      return "English";
-  }
-}
-
-type PhraseBookRecord = {
-  id: number;
-  keyPhrase: EitherPhrase;
-  altKeyPhrases: Array<EitherPhrase>;
-  valuePhrases: Array<EitherPhrase>;
-};
-
-const _fetchRecords = async () => {
-  const resp = await fetch("phrase-book.json");
-  const untypedData = (await resp.json()) as Array<unknown>;
-  return untypedData.map((obj, id) =>
-    Object.assign({}, obj, { id })
-  ) as Array<PhraseBookRecord>;
-};
-
-let _records: Promise<Array<PhraseBookRecord>> | null = null;
-const fetchRecords = () => {
-  if (_records == null) _records = _fetchRecords();
-  return _records;
-};
+import {
+  displayLanguage,
+  kInitialQuery,
+  otherLanguage,
+  type EitherPhrase,
+  type Language,
+  type PhraseBookRecord,
+  type Query,
+} from "./model";
+import { fetchRecords } from "./data";
 
 type SinglePhraseProps = { phrase: EitherPhrase };
 const SinglePhrase: React.FC<SinglePhraseProps> = ({ phrase }) => {
@@ -122,13 +79,6 @@ const VocabTableContent: React.FC<VocabTableContentProps> = ({ query }) => {
 function Loading() {
   return <h2>Loading...</h2>;
 }
-
-type Query = {
-  keyLanguage: Language;
-  search: string;
-};
-
-const kInitialQuery: Query = { keyLanguage: "english", search: "" };
 
 function queryResults(allRecords: Array<PhraseBookRecord>, query: Query) {
   let result = allRecords.slice();
