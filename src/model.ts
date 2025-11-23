@@ -43,3 +43,29 @@ export type Query = {
 };
 
 export const kInitialQuery: Query = { keyLanguage: "english", search: "" };
+
+export function queryResults(
+  allRecords: Array<PhraseBookRecord>,
+  query: Query
+) {
+  const queryKeyLang = query.keyLanguage;
+  const querySearchLower = query.search.toLowerCase();
+
+  let result = allRecords.slice();
+
+  result = result.filter(
+    (r) =>
+      r.keyPhrase.lang === queryKeyLang &&
+      r.keyPhrase.phraseLower.includes(querySearchLower)
+  );
+
+  result.sort((a, b) => {
+    const aKey = a.keyPhrase.phrase;
+    const bKey = b.keyPhrase.phrase;
+    if (aKey < bKey) return -1;
+    if (aKey > bKey) return 1;
+    return 0;
+  });
+
+  return result;
+}

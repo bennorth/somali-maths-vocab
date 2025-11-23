@@ -5,6 +5,7 @@ import {
   displayLanguage,
   kInitialQuery,
   otherLanguage,
+  queryResults,
   type EitherPhrase,
   type Language,
   type PhraseBookRecord,
@@ -77,26 +78,6 @@ const VocabTableContent: React.FC<VocabTableContentProps> = ({ query }) => {
 
 function Loading() {
   return <h2>Loading...</h2>;
-}
-
-function queryResults(allRecords: Array<PhraseBookRecord>, query: Query) {
-  let result = allRecords.slice();
-
-  result = result.filter(
-    (r) =>
-      r.keyPhrase.lang === query.keyLanguage &&
-      r.keyPhrase.phrase.toLowerCase().includes(query.search.toLowerCase())
-  );
-
-  result.sort((a, b) => {
-    const aKey = a.keyPhrase.phrase;
-    const bKey = b.keyPhrase.phrase;
-    if (aKey < bKey) return -1;
-    if (aKey > bKey) return 1;
-    return 0;
-  });
-
-  return result;
 }
 
 type DirectionToggleProps = {
