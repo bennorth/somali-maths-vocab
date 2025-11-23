@@ -1,13 +1,12 @@
-type SomaliPhrase = {
-  lang: "somali";
+export type PhraseNub = {
   phrase: string;
-  italic: boolean;
+  phraseLower: string;
 };
 
-type EnglishPhrase = {
-  lang: "english";
-  phrase: string;
-};
+type PhraseOfLang<LangT extends string> = { lang: LangT } & PhraseNub;
+
+type SomaliPhrase = PhraseOfLang<"somali"> & { italic: boolean };
+type EnglishPhrase = PhraseOfLang<"english">;
 
 export type EitherPhrase = SomaliPhrase | EnglishPhrase;
 
