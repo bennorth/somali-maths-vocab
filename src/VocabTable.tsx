@@ -66,7 +66,7 @@ const SinglePhrase: React.FC<SinglePhraseProps> = ({ phrase }) => {
     }
   })();
 
-  const clsName = italic ?? false ? "_SinglePhrase italic" : "_SinglePhrase";
+  const clsName = italic ? "_SinglePhrase italic" : "_SinglePhrase";
 
   return <span className={clsName}>{phrase.phrase}</span>;
 };
@@ -177,7 +177,7 @@ const DirectionToggle: React.FC<DirectionToggleProps> = ({
 
 type QueryControlProps = {
   query: Query;
-  setQuery: (q: Query) => void;
+  setQuery: (newQuery: Query) => void;
 };
 const QueryControl: React.FC<QueryControlProps> = ({ query, setQuery }) => {
   const setSearch: ChangeEventHandler<HTMLInputElement> = (evt) => {
